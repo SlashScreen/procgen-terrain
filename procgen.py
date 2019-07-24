@@ -6,14 +6,15 @@ import perlin
 def gen_baseterrain(dimensions, heightmod, heightboost, genBeach = True, printh = False, waterheight = 0):
 
     ###GENERATE###
-    pn = perlin.PerlinNoiseFactory(2)
+    pn = perlin.PerlinNoiseFactory(2,octaves = 6)
     termap = {}
     terimg = Image.new("RGB",(dimensions,dimensions))
     terpx = terimg.load()
     for x in range(dimensions):
         termap[x] = {}
         for y in range(dimensions):
-            value = pn(x,y)#*heightmod+heightboost
+            value = pn(x/dimensions,y/dimensions)*heightmod+heightboost
+            #print(value)
             i = ""
             p = (255,255,255)
             if value <= waterheight:
