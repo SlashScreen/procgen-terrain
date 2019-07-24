@@ -42,7 +42,8 @@ class genmap:
         #Draws a rectangle with material mat
     def drawCircle(self,x,y,r,mat):
         for a in range(360):
-            self.mp[x+int(math.cos(a)*r)][y+int(math.sin(a)*r)] = mat
+            for l in range(r):
+                self.mp[x+int(math.cos(a)*l)][y+int(math.sin(a)*l)] = mat
         self.render()
         #draws a circle with material mat and radius r
 
