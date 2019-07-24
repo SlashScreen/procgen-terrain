@@ -1,5 +1,6 @@
 import noise
-from PIL import Image 
+from PIL import Image
+import mapgenutils as gu
 
 def gen_baseterrain(dimensions, heightmod, heightboost, genBeach = True, printh = False, waterheight = 0):
 
@@ -54,5 +55,9 @@ def gen_baseterrain(dimensions, heightmod, heightboost, genBeach = True, printh 
             print(out)
 
         terimg.show()
-    return termap, terimg
+
+    gmp = gu.genmap(termap,terimg,dimensions)
     
+    return gmp
+    
+gen_baseterrain(50,4,2).showimg()
