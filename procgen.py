@@ -1,18 +1,19 @@
 import noise
 from PIL import Image
 import mapgenutils as gu
+import perlin
 
 def gen_baseterrain(dimensions, heightmod, heightboost, genBeach = True, printh = False, waterheight = 0):
 
     ###GENERATE###
-
+    pn = perlin.PerlinNoiseFactory(2)
     termap = {}
     terimg = Image.new("RGB",(dimensions,dimensions))
     terpx = terimg.load()
     for x in range(dimensions):
         termap[x] = {}
         for y in range(dimensions):
-            value = noise.snoise2(x,y,base=2.0)*heightmod+heightboost
+            value = pn(x,y)#*heightmod+heightboost
             i = ""
             p = (255,255,255)
             if value <= waterheight:
@@ -61,7 +62,7 @@ def gen_baseterrain(dimensions, heightmod, heightboost, genBeach = True, printh 
     return gmp
 
 if __name__ == "__main__" :
-    test = gen_baseterrain(50,4,2)
+    test = gen_baseterrain(150,.5,1,waterheight = 1)
     test.drawCircle(10,10,6,"r")
     test.drawRect(15,15,25,25,"r")
     test.render()

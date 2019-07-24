@@ -46,4 +46,9 @@ class genmap:
 
     def showimg(self):
         self.img.show()
-        
+
+
+    #Pseudocode
+    #River goes in a direction that changes slightly each step
+    #each step draw a circle with slight size variation
+    #make beach generator and all that stuff inside the class
